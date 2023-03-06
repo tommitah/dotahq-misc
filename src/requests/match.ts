@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import { RawMatch } from '../types';
-import { defaultRequestConfig } from './config';
+import defaultRequestConfig from './config';
 
 export const makeMatchRequest = async (matchId: string): Promise<[string, RawMatch]> => {
     const matchRequestConfig: AxiosRequestConfig = {

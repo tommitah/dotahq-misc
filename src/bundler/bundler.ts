@@ -48,6 +48,7 @@ export const bundleSimpleMatchData = (rawMatchData: RawMatch): SimpleMatch => {
     const match = createSimpleMatch(rawMatchData);
 
     // TODO: query API for hero names by id, Check if you can get images for accounts and heroes somehow
+    // Images seem to just be links, so using fetch on client side we can get the images
 
     return match;
 };
