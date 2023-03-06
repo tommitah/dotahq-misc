@@ -10,10 +10,15 @@
 // Alternatively we could do those deliberations on the side of 'business logic'?
 // This would be a separate module for bundling data together from separate requests and storing it in db?
 
-import { RawMatch, RawPlayer, SimpleMatch, SimplePlayer } from '../types';
+import {
+    RawMatch,
+    RawPlayer,
+    SimpleMatch,
+    SimplePlayer as MatchPlayer,
+} from '../types';
 
 // TODO: Go through which datapoints might be missing, might be a good idea to consider this
-const toSimplePlayer = (player: RawPlayer): SimplePlayer => {
+const toSimplePlayer = (player: RawPlayer): MatchPlayer => {
     return {
         account_id: player?.account_id,
         username: player?.personaname,
