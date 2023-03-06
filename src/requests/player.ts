@@ -1,12 +1,14 @@
 import axios, { AxiosRequestConfig } from 'axios';
-import {  RawPlayer } from '../types';
+import { RawPlayer } from '../types';
 import defaultRequestConfig from './config';
 
-export const makePlayerRequest = async (accountId: number): Promise<[number | null, RawPlayer]> => {
+export const makePlayerRequest = async (
+    accountId: number
+): Promise<[number | null, RawPlayer]> => {
     const matchRequestConfig: AxiosRequestConfig = {
         ...defaultRequestConfig,
         url: `/players/${accountId}`,
-        method: 'GET'
+        method: 'GET',
     };
 
     try {
