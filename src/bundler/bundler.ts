@@ -18,6 +18,7 @@ import {
 } from '../types';
 
 // TODO: Go through which datapoints might be missing, might be a good idea to consider this
+// Also IIRC player? checks if player exists rather than the field?
 const toSimplePlayer = (player: RawPlayer): MatchPlayer => {
     return {
         account_id: player?.account_id,

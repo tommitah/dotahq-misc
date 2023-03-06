@@ -1,13 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import { RawMatch } from '../types';
-import * as envConfig from '../utils/config';
-
-const defaultRequestConfig: AxiosRequestConfig = {
-    baseURL: envConfig.SERVER_URL,
-    params: {
-        key: `api_key=${envConfig.API_KEY}`
-    }
-};
+import { defaultRequestConfig } from './config';
 
 export const makeMatchRequest = async (matchId: string): Promise<[string, RawMatch]> => {
     const matchRequestConfig: AxiosRequestConfig = {
