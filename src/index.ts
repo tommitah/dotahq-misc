@@ -3,7 +3,8 @@ import { bundleSimpleMatchData } from './bundler';
 import { makePlayerRequest } from './requests/player';
 
 (async () => {
-    const [id, res] = await makeMatchRequest('6962326145');
+    // bit weird having these as numbers rather than strings...
+    const [id, res] = await makeMatchRequest(6962326145);
     console.log(id);
 
     const niceMatch = bundleSimpleMatchData(res);

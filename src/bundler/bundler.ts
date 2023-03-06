@@ -32,10 +32,11 @@ const toSimplePlayer = (player: RawPlayer): MatchPlayer => {
 const createSimpleMatch = (
     match: Pick<
         RawMatch,
-        'players' | 'radiant_win' | 'radiant_score' | 'dire_score'
+        'match_id' | 'players' | 'radiant_win' | 'radiant_score' | 'dire_score'
     >
 ): SimpleMatch => {
     return {
+        match_id: match.match_id,
         players: match.players.map(toSimplePlayer),
         radiant_win: match.radiant_win,
         radiant_score: match.radiant_score,

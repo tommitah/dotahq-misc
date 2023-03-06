@@ -3,8 +3,8 @@ import { RawMatch } from '../types';
 import defaultRequestConfig from './config';
 
 export const makeMatchRequest = async (
-    matchId: string
-): Promise<[string, RawMatch]> => {
+    matchId: number
+): Promise<[number, RawMatch]> => {
     const matchRequestConfig: AxiosRequestConfig = {
         ...defaultRequestConfig,
         url: `/matches/${matchId}`,

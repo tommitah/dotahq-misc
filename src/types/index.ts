@@ -1,7 +1,9 @@
 // TODO:
 // Data structures for simple match data, more complicated match data, player data etc.
 
+// id?
 export type SimpleMatch = {
+    match_id: number;
     players: SimplePlayer[];
     radiant_win: boolean;
     radiant_score: number;
