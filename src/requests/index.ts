@@ -1,1 +1,1 @@
-export { requestAndParseMatch } from './match';
+export { makeMatchRequest, makeRecentMatchesRequest } from './match';

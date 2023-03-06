@@ -1,19 +1,45 @@
 import axios, { AxiosRequestConfig } from 'axios';
+import * as envConfig from '../utils/config';
 
-// TODO: figure out if there are better ways of typing this if needed,
-// 'object' strikes me as too general
-const parseMatchData = (responseData: object) => {
-    return responseData;
+const defaultRequestConfig: AxiosRequestConfig = {
+    baseURL: envConfig.SERVER_URL,
+    params: {
+        key: `api_key=${envConfig.API_KEY}`
+    }
 };
 
-// TODO: return type should be custom data structure for match data
-export const requestAndParseMatch = async (opts: AxiosRequestConfig) => {
+const requestAndParseMatch = async (opts: AxiosRequestConfig) => {
     try {
         const res = await axios.request(opts);
-        console.log(res.data);
-        return parseMatchData(res.data);
+        return res.data;
     } catch (err) {
         console.error(err);
         throw err;
     }
 };
+
+export const makeMatchRequest = async (matchId: string) => {
+    const matchRequestConfig: AxiosRequestConfig = {
+        ...defaultRequestConfig,
+        url: `/matches/${matchId}`,
+        method: 'GET'
+    };
+
+    return [matchId, await requestAndParseMatch(matchRequestConfig)];
+};
+
+// Something like this to get a 'digest' or feed.
+export const makeRecentMatchesRequest = async (playerId: string) => {
+    const matchRequestConfig: AxiosRequestConfig = {
+        ...defaultRequestConfig,
+        url: `/players/${playerId}/recentMatches`,
+        method: 'GET'
+    };
+
+    return [playerId, await requestAndParseMatch(matchRequestConfig)];
+};
+
+(async () => {
+    const [id, res] = await makeMatchRequest('6962326145');
+    console.log(id, res);
+})();
