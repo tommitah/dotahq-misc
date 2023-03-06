@@ -1,1 +1,1 @@
-export { bundleMatchData } from './bundler';
+export { bundleSimpleMatchData } from './bundler';

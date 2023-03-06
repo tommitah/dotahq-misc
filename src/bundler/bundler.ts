@@ -4,6 +4,7 @@
 // by the client application
 // 2. define types that can also be utilized on the client/business logic -side if possible, check trpc for type safety here if possible!!!
 // 3. Nice to have, but maybe perform some additional operations on the data (link up tables?, match up playerid's with names etc.)
+
 // NOTE: This module might need to use the requests module for some checks as well,
 // since some data isn't obvious or easy to reason about if no queries to the API are made.
 // Alternatively we could do those deliberations on the side of 'business logic'?
@@ -37,8 +38,10 @@ const createSimpleMatch = (
 };
 
 // This will bundle data from 'Raw' formatted to 'Simple' and match some values to others in the API via requests
-export const bundleMatchData = (rawMatchData: RawMatch): SimpleMatch => {
+export const bundleSimpleMatchData = (rawMatchData: RawMatch): SimpleMatch => {
     const match = createSimpleMatch(rawMatchData);
+
+    // TODO: query API for hero names by id, Check if you can get images for accounts and heroes somehow
 
     return match;
 };

@@ -1,10 +1,10 @@
 import { makeMatchRequest } from './requests';
-import { bundleMatchData } from './bundler';
+import { bundleSimpleMatchData } from './bundler';
 
 (async () => {
     const [id, res] = await makeMatchRequest('6962326145');
     console.log(id);
 
-    const niceMatch = bundleMatchData(res);
+    const niceMatch = bundleSimpleMatchData(res);
     console.log(niceMatch);
 })();
