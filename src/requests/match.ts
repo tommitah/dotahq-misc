@@ -38,8 +38,3 @@ export const makeRecentMatchesRequest = async (playerId: string) => {
 
     return [playerId, await requestAndParseMatch(matchRequestConfig)];
 };
-
-(async () => {
-    const [id, res] = await makeMatchRequest('6962326145');
-    console.log(id, res);
-})();
