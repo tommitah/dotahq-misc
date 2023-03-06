@@ -1,4 +1,5 @@
 import axios, { AxiosRequestConfig } from 'axios';
+import { RawMatch } from '../types';
 import * as envConfig from '../utils/config';
 
 const defaultRequestConfig: AxiosRequestConfig = {
@@ -8,24 +9,20 @@ const defaultRequestConfig: AxiosRequestConfig = {
     }
 };
 
-const requestAndParseMatch = async (opts: AxiosRequestConfig) => {
-    try {
-        const res = await axios.request(opts);
-        return res.data;
-    } catch (err) {
-        console.error(err);
-        throw err;
-    }
-};
-
-export const makeMatchRequest = async (matchId: string) => {
+export const makeMatchRequest = async (matchId: string): Promise<[string, RawMatch]> => {
     const matchRequestConfig: AxiosRequestConfig = {
         ...defaultRequestConfig,
         url: `/matches/${matchId}`,
         method: 'GET'
     };
 
-    return [matchId, await requestAndParseMatch(matchRequestConfig)];
+    try {
+        const res = await axios.request(matchRequestConfig);
+        return [matchId, res.data as RawMatch];
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
 };
 
 // Something like this to get a 'digest' or feed.
@@ -36,5 +33,12 @@ export const makeRecentMatchesRequest = async (playerId: string) => {
         method: 'GET'
     };
 
-    return [playerId, await requestAndParseMatch(matchRequestConfig)];
+    try {
+        const res = await axios.request(matchRequestConfig);
+        // TODO: separate data type for this
+        return [playerId, res.data as RawMatch];
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
 };

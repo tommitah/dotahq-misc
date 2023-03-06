@@ -2,14 +2,15 @@
 // Data structures for simple match data, more complicated match data, player data etc.
 
 export type SimpleMatch = {
-    players: Player[];
+    players: SimplePlayer[];
     radiant_win: boolean;
     radiant_score: number;
     dire_score: number;
 };
 
-type Player = {
-    account_id: string | null;
+export type SimplePlayer = {
+    account_id: number | null;
+    username: string | null;
     hero_id: number;
     kills: number;
     kda: number;
@@ -55,9 +56,9 @@ export type RawMatch = {
     patch: number;
     region: number;
     replay_url: string;
-};
+}
 
-type RawPlayer = {
+export type RawPlayer = {
     match_id: number;
     player_slot: number;
     ability_targets: null;
@@ -183,7 +184,7 @@ type RawBenchmarks = {
     stuns_per_min: { [key: string]: number };
     // TODO: check this
     lhten: null;
-};
+}
 
 // export interface Lhten {}
 
