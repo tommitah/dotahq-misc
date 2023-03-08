@@ -33,6 +33,8 @@ export const makeRecentMatchesRequest = async (
     try {
         const res = await axios.request(matchRequestConfig);
         // TODO: separate data type for this
+        // Might need to think about how this works for players without accounts,
+        // or then this request is only used for the guild
         return [accountId, res.data as RawMatch[]];
     } catch (error) {
         console.error(error);

@@ -11,6 +11,7 @@
 // This would be a separate module for bundling data together from separate requests and storing it in db?
 
 import {
+    Player,
     RawMatch,
     RawPlayer,
     SimpleMatch,
@@ -45,11 +46,17 @@ const createSimpleMatch = (
 };
 
 // This will bundle data from 'Raw' formatted to 'Simple' and match some values to others in the API via requests
-export const bundleSimpleMatchData = (rawMatchData: RawMatch): SimpleMatch => {
+export const bundleSimpleMatchData = (
+    rawMatchData: RawMatch,
+    rawPlayerData: Player
+): SimpleMatch => {
     const match = createSimpleMatch(rawMatchData);
+    console.log(rawPlayerData);
 
     // TODO: query API for hero names by id, Check if you can get images for accounts and heroes somehow
     // Images seem to just be links, so using fetch on client side we can get the images
+    // Put these in a separate request and call it in sequence with this, better not to make requests
+    // from the bundler
 
     return match;
 };

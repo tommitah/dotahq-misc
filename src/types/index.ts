@@ -18,6 +18,37 @@ export type SimplePlayer = {
     kda: number;
 };
 
+export type Player = {
+    leaderboard_rank:      null;
+    profile:               Profile;
+    rank_tier:             number;
+    solo_competitive_rank: null;
+    competitive_rank:      number;
+    mmr_estimate:          MmrEstimate;
+}
+
+export type MmrEstimate = {
+    estimate: number;
+}
+
+export type Profile = {
+    account_id:     number;
+    personaname:    string;
+    name:           null;
+    plus:           boolean;
+    cheese:         number;
+    steamid:        string;
+    avatar:         string;
+    avatarmedium:   string;
+    avatarfull:     string;
+    profileurl:     string;
+    last_login:     Date;
+    loccountrycode: string;
+    status:         null;
+    is_contributor: boolean;
+    is_subscriber:  boolean;
+}
+
 export type RawMatch = {
     match_id: number;
     barracks_status_dire: number;
