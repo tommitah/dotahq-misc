@@ -1,1 +1,1 @@
-export { bundleSimpleMatchData } from './bundler';
+export { bundleSimpleMatch, bundleGuildPlayers } from './bundler';

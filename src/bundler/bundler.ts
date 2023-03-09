@@ -30,7 +30,7 @@ const toSimplePlayer = (player: RawPlayer): MatchPlayer => {
     };
 };
 
-const createSimpleMatch = (
+const bundleSimpleMatch = (
     match: Pick<
         RawMatch,
         'match_id' | 'players' | 'radiant_win' | 'radiant_score' | 'dire_score'
@@ -45,18 +45,26 @@ const createSimpleMatch = (
     };
 };
 
-// This will bundle data from 'Raw' formatted to 'Simple' and match some values to others in the API via requests
-export const bundleSimpleMatchData = (
-    rawMatchData: RawMatch,
-    rawPlayerData: Player
-): SimpleMatch => {
-    const match = createSimpleMatch(rawMatchData);
-    console.log(rawPlayerData);
-
-    // TODO: query API for hero names by id, Check if you can get images for accounts and heroes somehow
-    // Images seem to just be links, so using fetch on client side we can get the images
-    // Put these in a separate request and call it in sequence with this, better not to make requests
-    // from the bundler
-
-    return match;
+type BundlePlayer = Pick<Player, 'solo_competitive_rank' | 'profile'>;
+const bundleGuildPlayers = (players: Player[]): BundlePlayer[] => {
+    return players.map((player: Player) => {
+        return {
+            solo_competitive_rank: player.solo_competitive_rank,
+            profile: player.profile
+        };
+    });
 };
+
+export { bundleSimpleMatch, bundleGuildPlayers };
+
+// This will bundle data from 'Raw' formatted to 'Simple' and match some values to others in the API via requests
+// export const bundleSimpleMatchData = (rawMatchData: RawMatch): SimpleMatch => {
+//     const match = createSimpleMatch(rawMatchData);
+//
+//     // TODO: query API for hero names by id, Check if you can get images for accounts and heroes somehow
+//     // Images seem to just be links, so using fetch on client side we can get the images
+//     // Put these in a separate request and call it in sequence with this, better not to make requests
+//     // from the bundler
+//
+//     return match;
+// };

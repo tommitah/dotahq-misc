@@ -1,5 +1,5 @@
 import { createRepository } from './repository';
-import { bundleSimpleMatchData } from './bundler';
+import { bundleGuildPlayers, bundleSimpleMatch } from './bundler';
 
 // import { writeFileSync } from 'fs';
 
@@ -9,12 +9,20 @@ import { bundleSimpleMatchData } from './bundler';
 (async () => {
     // writeFileSync('player.json', JSON.stringify(player));
 
-    const {getMatchData, getPlayerData} = createRepository();
-    const [id, match] = await getMatchData(6962326145);
-    const [accountId, player] = await getPlayerData(136141238);
+    const { getMatchData, getPlayerData } = createRepository();
+    const [, match] = await getMatchData(6962326145);
 
-    console.log(id, accountId);
-    const niceMatch = bundleSimpleMatchData(match, player);
+    // Molehill mobsters:
+    const players = await Promise.all(
+        [91481212, 39365657, 142134059, 68461480, 136141238].map(
+            async (accountId) => {
+                const [, player] = await getPlayerData(accountId);
+                return player;
+            }
+        )
+    );
+    const niceMatch = bundleSimpleMatch(match);
+    const guildPlayers = bundleGuildPlayers(players);
     console.log(niceMatch);
-
+    console.log(guildPlayers);
 })();
