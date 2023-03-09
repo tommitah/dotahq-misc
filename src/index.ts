@@ -1,5 +1,5 @@
 import { createRepository } from './repository';
-import { bundleGuildPlayers, bundleSimpleMatch } from './bundler';
+import { cleanSimpleMatch, cleanGuildPlayers } from './cleaner';
 
 // import { writeFileSync } from 'fs';
 
@@ -21,8 +21,8 @@ import { bundleGuildPlayers, bundleSimpleMatch } from './bundler';
             }
         )
     );
-    const niceMatch = bundleSimpleMatch(match);
-    const guildPlayers = bundleGuildPlayers(players);
+    const niceMatch = cleanSimpleMatch(match);
+    const guildPlayers = cleanGuildPlayers(players);
     console.log(niceMatch);
     console.log(guildPlayers);
 })();

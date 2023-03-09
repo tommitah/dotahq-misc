@@ -30,7 +30,7 @@ const toSimplePlayer = (player: RawPlayer): MatchPlayer => {
     };
 };
 
-const bundleSimpleMatch = (
+const cleanSimpleMatch = (
     match: Pick<
         RawMatch,
         'match_id' | 'players' | 'radiant_win' | 'radiant_score' | 'dire_score'
@@ -46,7 +46,7 @@ const bundleSimpleMatch = (
 };
 
 type BundlePlayer = Pick<Player, 'solo_competitive_rank' | 'profile'>;
-const bundleGuildPlayers = (players: Player[]): BundlePlayer[] => {
+const cleanGuildPlayers = (players: Player[]): BundlePlayer[] => {
     return players.map((player: Player) => {
         return {
             solo_competitive_rank: player.solo_competitive_rank,
@@ -55,7 +55,7 @@ const bundleGuildPlayers = (players: Player[]): BundlePlayer[] => {
     });
 };
 
-export { bundleSimpleMatch, bundleGuildPlayers };
+export { cleanSimpleMatch, cleanGuildPlayers };
 
 // This will bundle data from 'Raw' formatted to 'Simple' and match some values to others in the API via requests
 // export const bundleSimpleMatchData = (rawMatchData: RawMatch): SimpleMatch => {
